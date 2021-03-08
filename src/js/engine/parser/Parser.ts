@@ -19,7 +19,7 @@ export class Parser {
             
             const { state, emitter, parsing } = next(this.context);
 
-            //console.log('state: ' + next.name + ', emitter: ' + emitter?.name + ', attr: ' + JSON.stringify(this.context.tag))
+            //console.log('state: ' + next.name + ', emitter: ' + emitter?.name + ', parsed tag: ' + JSON.stringify(this.context.tag))
 
             if (emitter) emitter(this.context, visitor);
             if (!parsing) break;

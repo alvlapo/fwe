@@ -129,6 +129,7 @@ export function tagSelf(ctx:StateContext): StateResult {
 
     if (c == '>') {
         ctx.tag.type = TagType.SELF
+        ctx.tag.attr.push(ctx.attr)
         return { 
             state: dataState, 
             emitter: emitTag, 
@@ -240,6 +241,7 @@ export function attrName(ctx: StateContext): StateResult {
 
         if (c == '/') {
             ctx.attr[0] = name
+            ctx.attr[1] = ''
             return {
                 state: tagSelf,
                 parsing: true
@@ -256,6 +258,8 @@ export function attrName(ctx: StateContext): StateResult {
 
         if (c == '>') {
             ctx.attr[0] = name
+            ctx.attr[1] = ''
+            ctx.tag.attr.push(ctx.attr)
             return {
                 state: dataState,
                 emitter: emitTag,
@@ -285,6 +289,7 @@ export function afterAttrName(ctx: StateContext): StateResult {
         }
 
         if (c == '/') {
+            ctx.attr[1] = ''
             return {
                 state: tagSelf,
                 parsing: true
@@ -299,6 +304,8 @@ export function afterAttrName(ctx: StateContext): StateResult {
         }
 
         if (c == '>') {
+            ctx.attr[1] = ''
+            ctx.tag.attr.push(ctx.attr)
             return {
                 state: dataState,
                 emitter: emitTag,
@@ -448,15 +455,14 @@ export function afterAttrValueQuoted(ctx: StateContext): StateResult {
         }
     }
 
-    ctx.tag.attr.push(ctx.attr)
-    ctx.attr = ['','']
-
     if (c == '/') {
         return {
             state: tagSelf,
             parsing: true
         }
     }
+
+    ctx.tag.attr.push(ctx.attr)
 
     if (c == '>') {
         ctx.tag.type = TagType.OPEN
@@ -466,6 +472,8 @@ export function afterAttrValueQuoted(ctx: StateContext): StateResult {
             parsing: true 
         }
     }
+
+    ctx.attr = ['','']
 
     return {
         state: beforeAttrName,

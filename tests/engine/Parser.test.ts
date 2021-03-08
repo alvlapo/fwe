@@ -1,3 +1,4 @@
+import { ParsedTag } from '../../src/js/engine/parser/ParsedTag';
 import { Parser } from '../../src/js/engine/parser/Parser';
 import { StringDataSource } from '../../src/js/engine/parser/StringDataSource';
 import { TagType } from '../../src/js/engine/parser/TagType';
@@ -75,6 +76,19 @@ describe('Parser', () => {
         
                     expect(mockVisitor.onTag.mock.calls.length).toBe(1);
                     expect(mockVisitor.onTag.mock.calls[0][0]).toEqual(expected);
+                })
+
+                it('should emit tag with empty string as the value for empty attribute syntax', () => {
+                    const mockVisitor = getMockVisitor()
+        
+                    createParserFor("<tag disabled/>").parse(mockVisitor)
+        
+                    expect(mockVisitor.onTag.mock.calls.length).toBe(1)
+                    expect(mockVisitor.onTag.mock.calls[0][0]).toStrictEqual({ 
+                        name: 'tag', 
+                        type: TagType.SELF, 
+                        attr: [ ['disabled', ''] ]
+                    } as ParsedTag)
                 })
             })
 
