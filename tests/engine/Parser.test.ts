@@ -1,7 +1,7 @@
-import { ParsedTag } from '../../src/js/engine/parser/ParsedTag';
-import { Parser } from '../../src/js/engine/parser/Parser';
-import { StringDataSource } from '../../src/js/engine/parser/StringDataSource';
-import { TagType } from '../../src/js/engine/parser/TagType';
+import { ParsedTag } from '../../src/js/engine/dom/parser/ParsedTag';
+import { Parser } from '../../src/js/engine/dom/parser/Parser';
+import { StringDataSource } from '../../src/js/engine/dom/parser/StringDataSource';
+import { TagType } from '../../src/js/engine/dom/parser/TagType';
 
 function createParserFor(source: string) {
     let ds = new StringDataSource(source);

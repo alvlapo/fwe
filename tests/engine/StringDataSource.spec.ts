@@ -1,4 +1,4 @@
-import { StringDataSource } from '../../src/js/engine/parser/StringDataSource';
+import { StringDataSource } from '../../src/js/engine/dom/parser/StringDataSource';
 
 test('Next schould return chars', () => {
     let ds = new StringDataSource("ABC");

@@ -1,12 +1,15 @@
-namespace Dom {
+import { NodeType } from "./NodeType";
 
-    class Node {
-        private nodeType: NodeType;
+export class Node {
+    readonly type: NodeType;
 
-        constructor(type: NodeType) {
-            this.nodeType = type;
-        }
+    name?: string
+    value?: string
+    attrs?: [string, string][]
+
+    childs?: Node[]
+
+    constructor(type: NodeType) {
+        this.type = type;
     }
-
 }
-

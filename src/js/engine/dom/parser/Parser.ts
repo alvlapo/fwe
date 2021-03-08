@@ -2,8 +2,9 @@ import { StateContext } from './StateContext';
 import StateResult from './StateResult';
 import { dataState } from './States';
 import TagVisitor from './TagVisitor';
+import { SourceParser } from '../SourceParser';
 
-export class Parser {
+export class Parser implements SourceParser {
 
     private context: StateContext;
 

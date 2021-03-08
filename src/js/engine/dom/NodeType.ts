@@ -1,8 +1,5 @@
-namespace Dom {
-
-    export enum NodeType {
-        TEXT,
-        ELEMENT
-    }
-
+export enum NodeType {
+    TEXT,
+    ELEMENT,
+    DOCUMENT
 }
